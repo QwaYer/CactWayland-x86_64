@@ -1,0 +1,5 @@
+name: wayland
+version: 1.26.0
+arch: x86_64
+description: Wayland protocol libraries (client, server, egl, cursor) for CactOS
+depends: libffi

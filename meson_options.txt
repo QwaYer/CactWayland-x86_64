@@ -1,28 +1,11 @@
-option('libraries',
-  description: 'Compile Wayland libraries',
-  type: 'boolean',
-  value: true)
-option('scanner',
-  description: 'Compile wayland-scanner binary',
-  type: 'boolean',
-  value: true)
-option('tests',
-  description: 'Compile Wayland tests',
-  type: 'boolean',
-  value: true)
-option('documentation',
-  description: 'Build the documentation (requires Doxygen, dot, xmlto, xsltproc)',
-  type: 'boolean',
-  value: true)
-option('docbook_validation',
-  type: 'boolean',
-  value: false,
-  description: 'Validate the intermediate DocBook XML during the documentation build')
-option('dtd_validation',
-  description: 'Validate the protocol DTD (requires libxml2)',
-  type: 'boolean',
-  value: true)
-option('icon_directory',
-  description: 'Location used to look for cursors (defaults to ${datadir}/icons if unset)',
-  type: 'string',
-  value: '')
+option('cactlib', type: 'string', value: '../CactLibc-x86_64',
+  description: 'CactLibc project root, relative to this repo or absolute')
+
+option('ffiinc', type: 'string', value: '../LocalRepoCactOS-x86_64/lib/include',
+  description: 'Directory with ffi.h + ffitarget.h (stage CactFFI first); relative or absolute')
+
+option('lr_lib', type: 'string', value: '../LocalRepoCactOS-x86_64/lib',
+  description: 'LocalRepo staging lib directory used by the stage target, relative or absolute')
+
+option('cpkg_py', type: 'string', value: '../CactPkg-x86_64/tools/cpkg.py',
+  description: 'CactPkg host tool (cpkg.py) used by the pkg target, relative or absolute')

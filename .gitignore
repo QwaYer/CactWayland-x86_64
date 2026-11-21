@@ -6,3 +6,9 @@
 *~
 cscope.out
 ctags
+
+# CactOS port: the Meson build tree, the assembled package payload and the local
+# .cpkg repository it produces (see meson.build).
+/build-meson/
+/repo/
+/pkg/*/payload/
