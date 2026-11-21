@@ -238,7 +238,8 @@ _pkg_repo = src_root / 'repo'
 
 run_target('pkg',
   command: [bash, '-c',
-            'rm -rf "' + _pkg_dir + '/payload"; ' +
+            'set -e; rm -f "' + _pkg_repo + '"/*.cpkg; mkdir -p "' + _pkg_repo +
+            '"; rm -rf "' + _pkg_dir + '/payload"; ' +
             _copy.replace('@ROOT@', _pkg_dir / 'payload') +
             python3.full_path() + ' "' + cpkg_py + '" build "' + _pkg_dir +
             '" --repo "' + _pkg_repo + '"; ' +
