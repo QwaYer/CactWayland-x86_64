@@ -19,18 +19,16 @@
 #define HAVE_MKOSTEMP      1
 #define HAVE_GETTID        1
 #define HAVE_STRNDUP       1
+/* memfd_create() plus F_ADD_SEALS/F_GET_SEALS and the seal enforcement in
+ * ftruncate/write — CactOS grew both (the /dev/memfd device always existed;
+ * the libc wrapper and the kernel seals are new), which is what Wayland's shm
+ * pools want: they create the pool as a sealed memfd so a client cannot shrink
+ * it out from under the compositor. */
+#define HAVE_MEMFD_CREATE  1
 
 /* Not present, and the sources want them undefined:
  *   HAVE_PRCTL, HAVE_POSIX_FALLOCATE, HAVE_MREMAP,
- *   HAVE_SYS_PRCTL_H, HAVE_SYS_PROCCTL_H, HAVE_SYS_UCRED_H
- *
- * HAVE_MEMFD_CREATE is deliberately off too: CactOS has the memfd *device*
- * (CACT_MEMFDCTL_CREATE on /dev/memfd) but CactLibc has no memfd_create()
- * wrapper and the kernel has no sealing (MFD_ALLOW_SEALING / F_ADD_SEALS /
- * F_SEAL_*), which is what Wayland's shm pools want it for.  With it undefined
- * Wayland takes its fallback anonymous-file path over /dev/shm (shm_open).
- * Adding memfd_create() + seals to CactLibc/CactKernel would be the better fix
- * and this define should then be turned back on. */
+ *   HAVE_SYS_PRCTL_H, HAVE_SYS_PROCCTL_H, HAVE_SYS_UCRED_H */
 
 /* Probes the sources read numerically. */
 #define HAVE_BROKEN_MSG_CMSG_CLOEXEC 0
